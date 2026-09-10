@@ -1,0 +1,35 @@
+programme du kick-off :
+- présenter les slides.
+
+- Donner des exemples de problématiques à adresser ? Donner davantage d'idées que ce qu'il y a dans les slides.
+    - Situation d'une localité (quartier/ville/département) par rapport à la moyenne nationale
+    -
+
+- Donner des exemples de valeurs explicatives potentiellement intéressantes pour expliquer et anticiper des phénomènes (inégalités, changement climatique).
+    - PIB / habitant
+    - taux de chômage
+    - bord politique ?
+    - espérance de vie ? bof
+    - Activité touristiques..?
+    - Niveau d'accès au soin, moyenne d'age ...
+    - Classe énergétique des bâtiments
+    - Attractivité de la région (entrant vs sortant) + évolution de l'attractivité
+    - Age moyen
+
+    Aspects climatique:
+    - Historique et tendance des températures sur les 20 dernières années.
+    - Taux de catastrophes naturelles / coût des assurances
+    -
+
+
+Présenter ensuite les sites déjà existants
+
+Présenter également les API où on peut récupérer des datas.
+
+-> J'aimerais que tu me listes des liens qui fonctionnent et qui fournissent des données intéressantes, ça les aidera à partir.
+
+Sensibiliser à la collecte responsable des données.
+
+
+
+
