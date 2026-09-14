@@ -54,6 +54,7 @@
   .grid{display:grid; gap:2.2vh 2.4vw; margin-top:1vh}
   .g2{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:repeat(3,1fr)}
+  .gauto{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
   .card{background:var(--paper2); border-left:4px solid var(--blue); border-radius:8px;
         padding:2.1vh 1.5vw; box-shadow:0 1px 0 rgba(0,0,0,.04)}
   .card h3{font-size:clamp(15px,1.5vw,20px); color:var(--navy); margin-bottom:.5vh; font-weight:700}
@@ -68,7 +69,6 @@
   .step p{font-size:clamp(12px,1.15vw,15px); color:#c7cdd6; line-height:1.35}
   .note{margin-top:3vh; background:#fbf6e9; border:1px solid #e7dcb6; border-left:4px solid var(--gold);
         border-radius:8px; padding:1.8vh 1.6vw; font-size:clamp(13px,1.35vw,18px); color:#6b5d2a}
-  .note.warn{background:#fbeeee; border-color:#e6c3c3; border-left-color:var(--brown); color:#7a3f34}
   .two{display:grid; grid-template-columns:1fr 1fr; gap:3vw; align-items:start; margin-top:1vh}
   .kv{display:flex; flex-direction:column; gap:1.4vh}
   .kv .row{display:flex; gap:1em; align-items:baseline}
@@ -78,6 +78,64 @@
   .flow .node{background:var(--paper2); border:2px solid var(--blue); color:var(--navy); font-weight:700;
         border-radius:10px; padding:2.2vh 1.4vw; font-size:clamp(14px,1.5vw,21px); text-align:center; flex:1; min-width:150px}
   .flow .arrow{color:var(--teal); font-size:clamp(18px,2vw,28px); font-weight:700}
+  .flow.compact .node{padding:1.3vh 1.2vw; font-size:clamp(12px,1.3vw,17px)}
+
+  /* ---------- Photo slides (full-bleed background image + scrim) ---------- */
+  .slide.photo{background-size:cover; background-position:center; z-index:0}
+  .slide.photo::before{content:""; position:absolute; inset:0; z-index:-1;
+        background:rgba(10,14,20,.50)}
+  .slide.photo h1, .slide.photo h2{color:#fff}
+  .slide.photo p, .slide.photo .lead{color:#eceae4}
+  .slide.photo strong{color:#fff}
+  .slide.photo .kicker{color:var(--teal)}
+
+  /* ---------- Photo slides, light variant (image tinted into the paper background) ---------- */
+  .slide.photo-light{background-size:cover; background-position:center; z-index:0}
+  .slide.photo-light::before{content:""; position:absolute; inset:0; z-index:-1; background:rgba(238,237,232,.85)}
+
+  /* ---------- Inline images: split layout & full-width banners ---------- */
+  .split{display:grid; gap:2.6vw; align-items:stretch; margin-top:1vh}
+  .imgwrap{border-radius:14px; overflow:hidden; box-shadow:0 10px 28px rgba(34,44,59,.18); background:#12161d}
+  .imgwrap img{width:100%; height:100%; object-fit:cover; display:block}
+  .banner{width:100%; border-radius:14px; overflow:hidden; box-shadow:0 10px 26px rgba(34,44,59,.16);
+        margin-top:2.6vh; max-height:20vh}
+  .banner img{width:100%; height:100%; object-fit:cover; display:block}
+
+  /* ---------- Compact link list (image-paired reference slides) ---------- */
+  .linklist{display:flex; flex-direction:column; gap:.9vh; margin-top:1.6vh}
+  .linklist a{display:flex; justify-content:space-between; align-items:baseline; text-decoration:none;
+        background:var(--paper2); border-left:3px solid var(--blue); border-radius:6px; padding:.9vh 1vw;
+        transition:background .15s ease}
+  .linklist a:hover{background:#fff}
+  .linklist .name{font-weight:700; color:var(--navy); font-size:clamp(13px,1.3vw,17px)}
+  .linklist .dom{color:var(--blue); font-size:clamp(11px,1.05vw,13px); font-weight:600; white-space:nowrap}
+
+  /* ---------- Link cards (clickable references) ---------- */
+  .linkcard{display:block; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease; cursor:pointer}
+  .linkcard:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(34,44,59,.14)}
+  .linkcard h3{display:flex; align-items:center; gap:.4em}
+  .linkcard h3 .go{color:var(--teal); font-weight:800}
+  .linkcard .url{display:block; margin-top:1vh; font-size:clamp(11px,1.05vw,13px); color:var(--blue); font-weight:600; letter-spacing:.02em}
+
+  /* ---------- Chips ---------- */
+  .chips{display:flex; flex-wrap:wrap; gap:.5em; margin-top:1.3vh}
+  .chip{background:#fff; border:1px solid var(--line); border-radius:999px; padding:.35em 1em;
+        font-size:clamp(11px,1.1vw,14px); color:var(--navy); font-weight:600}
+
+  /* ---------- Compact doc lists inside cards ---------- */
+  ul.doclist{list-style:none; margin-top:1.2vh; display:flex; flex-direction:column; gap:.7vh}
+  ul.doclist li{font-size:clamp(12px,1.2vw,15px); color:var(--muted); padding-left:1.2em; position:relative; line-height:1.35}
+  ul.doclist li::before{content:"–"; position:absolute; left:0; color:var(--blue); font-weight:700}
+
+  /* ---------- Source table ---------- */
+  table.srctable{width:100%; border-collapse:collapse; margin-top:1.5vh}
+  table.srctable th{text-align:left; font-size:clamp(11px,1.05vw,13px); letter-spacing:.08em; text-transform:uppercase;
+        color:var(--blue); font-weight:700; padding:.6vh 1vw; border-bottom:2px solid var(--navy)}
+  table.srctable td{padding:1vh 1vw; font-size:clamp(13px,1.35vw,17px); border-bottom:1px solid var(--line); color:var(--ink); vertical-align:middle}
+  table.srctable tr:last-child td{border-bottom:none}
+  table.srctable a{color:var(--blue); font-weight:700; text-decoration:none}
+  table.srctable a:hover{text-decoration:underline}
+  table.srctable .var{font-weight:700; color:var(--navy)}
 
   /* ---------- Cover & section dividers ---------- */
   .slide.cover, .slide.section{justify-content:center; background:var(--navy); color:var(--paper)}
@@ -97,7 +155,6 @@
   .crit{list-style:none; display:flex; flex-direction:column; gap:1.5vh; margin-top:1vh; max-width:64ch}
   .crit li{position:relative; padding-left:1.9em; font-size:clamp(15px,1.55vw,21px); line-height:1.38; color:var(--ink)}
   .crit li::before{content:"✓"; position:absolute; left:0; top:0; color:var(--green); font-weight:800}
-  .rule{font-size:clamp(13px,1.3vw,17px); color:var(--muted); margin-top:.4vh; font-style:italic}
   .scale{display:flex; gap:.5em; margin-top:3vh}
   .scale span{width:2.1em; height:2.1em; display:grid; place-items:center; border:1.5px solid var(--line);
         border-radius:7px; color:var(--muted); font-weight:700; font-size:clamp(12px,1.2vw,16px); background:var(--paper2)}
@@ -107,7 +164,6 @@
   #bar{position:fixed; top:0; left:0; height:4px; background:var(--teal); width:0; z-index:50; transition:width .3s}
   #counter{position:fixed; bottom:2.6vh; right:2.4vw; z-index:50; color:var(--muted);
         font-size:13px; font-weight:600; letter-spacing:.06em; font-variant-numeric:tabular-nums}
-  .slide.cover ~ #counter{}
   #nav{position:fixed; bottom:2.2vh; left:2.4vw; z-index:50; display:flex; gap:.5em}
   #nav button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.7);
         color:var(--navy); font-size:16px; cursor:pointer; line-height:1}
@@ -147,161 +203,215 @@
     <h2>Where we're going</h2>
     <div class="body">
       <ul class="big">
-        <li><strong>The why</strong> — what this app is actually for</li>
-        <li><strong>Choose your thematic</strong> — pick the problem you'll solve</li>
-        <li><strong>The data</strong> — where to find it and how to collect it cleanly</li>
-        <li><strong>The tech</strong> — what we expect you to build</li>
-        <li><strong>The frame</strong> — how you'll be evaluated, and by when</li>
-        <li><strong>Get started</strong> — your first two hours</li>
+        <li><strong>Project Presentation</strong> — the app, example topics, inspiration &amp; data sources</li>
+        <li><strong>Data Representation &amp; Exploration</strong> — tables, maps, and how to visualize well</li>
+        <li><strong>Technologies &amp; Methodology</strong> — the pipeline, the tools, what to document</li>
+        <li><strong>Evaluation Criteria</strong> — teams, timeline, and how you'll be graded</li>
+        <li><strong>Your Next Two Hours</strong> — how to start right now</li>
       </ul>
-      <div class="note">By the end, every team leaves with <strong>one thematic</strong> and <strong>three data sources</strong> identified.</div>
     </div>
   </section>
 
-  <!-- ACT 1 DIVIDER -->
+  <!-- 3 SECTION 1 DIVIDER -->
   <section class="slide section">
-    <div class="kicker">Act 1</div>
-    <h1>The why</h1>
-    <div class="lead">Before a single line of code: what are we trying to explain?</div>
+    <div class="kicker">Section 1</div>
+    <h1>Project Presentation</h1>
+    <div class="lead">What you're building, for whom, and where to find the data.</div>
     <div class="big-num">1</div>
   </section>
 
-  <!-- 3 BIG DATA 101 -->
-  <section class="slide">
-    <div class="kicker">Context</div>
-    <h2>Big Data 101</h2>
-    <div class="body">
-      <p style="max-width:62ch">Big Data = data whose <span class="em">Volume</span>,
-      <span class="em">Variety</span> and <span class="em">Velocity</span> are high enough
-      that they require specific technologies and methods to turn into value.</p>
-      <div class="grid g3" style="margin-top:4vh">
-        <div class="card"><h3>Volume</h3><p>Millions of transactions, diagnostics, records.</p></div>
-        <div class="card t"><h3>Variety</h3><p>Tables, text, geography — many sources, many formats.</p></div>
-        <div class="card o"><h3>Velocity</h3><p>How fast data arrives and must be processed.</p></div>
-      </div>
-      <div class="note">For Homepedia, focus on <strong>Volume &amp; Variety</strong>.
-      <strong>Real-time (Velocity) is a bonus</strong>, not a requirement — most housing data is batch.</div>
-    </div>
-  </section>
-
-  <!-- 4 THE GOAL ⭐ -->
-  <section class="slide">
+  <!-- 4 THE PROJECT (merged: goal + audience) -->
+  <section class="slide photo" style="background-image:url('../images/theproject.jpg')">
     <div class="kicker">The point of it all</div>
-    <h2>The goal of the app</h2>
+    <h2>The Project</h2>
     <div class="body">
-      <p style="max-width:64ch; font-size:clamp(18px,2vw,28px); color:var(--navy)">
-        You're <strong>not</strong> building a real-estate listings website.<br>
-        You're building a <span class="em">decision-support tool</span> for the property market
-        that <span class="em-teal">explains the territory</span>: why prices, inequalities and
-        risks vary from place to place — and what we can anticipate.</p>
-      <div class="flow">
+      <p style="max-width:65ch; font-size:clamp(25px,10.9vw,18px)">
+        In this project, you will use <span class="em">DataOps</span> to build a powerful decision-support tool for the property market, moving far beyond a standard real-estate listings website.
+        <br><br>
+
+        Through data collection, processing, and analysis, you will create an interactive platform that <span class="em-teal">explains the territory</span>.
+
+        Your main users won’t be people looking for housing. They will be <strong>real
+        estate firms, local governments, data analysts from big companies… </strong>
+        Your app will help them do their job, which is to find answers to big
+        questions like : <i>
+        <br>- “How can I reduce inequality in my department”
+        <br>- “What are the risks of investing in this lot caused by global warming at a 15
+        years horizon”
+        <br>- “Where should the next 10 franchises of my company be located?” </i>
+        <br><br>
+        Ultimately, your platform will turn complex data into user-friendly, actionable territory intelligence.
+      </p>
+      <div class="flow" style="margin-top:2.6vh">
         <div class="node">Collect</div><div class="arrow">→</div>
         <div class="node">Cross-reference</div><div class="arrow">→</div>
         <div class="node">Explain</div>
       </div>
-      <div class="note">Your job is DataOps: make data easy to capture, parse and analyse —
-      and serve quality visualizations from which <strong>insights</strong> are extracted.</div>
     </div>
   </section>
 
-  <!-- 5 WHO FOR -->
+  <!-- 5 EXAMPLES OF TOPICS (merged families + example) -->
   <section class="slide">
-    <div class="kicker">Audience</div>
-    <h2>Who is it for?</h2>
-    <div class="two">
+    <div class="kicker">Six directions, one example each</div>
+    <h2>Examples of Topics</h2>
+    <div class="split body" style="grid-template-columns:1.6fr 1fr">
       <div>
-        <p style="font-size:clamp(17px,1.8vw,24px)">Your users are <span class="em">professionals &amp; decision-makers</span>:</p>
-        <ul class="big" style="margin-top:2.5vh">
-          <li>Real-estate firms</li>
-          <li>Local governments &amp; public bodies</li>
-          <li>Data analysts in large companies</li>
-        </ul>
+        <div class="grid g2">
+          <div class="card"><h3>Territorial inequality</h3><p>"Which towns are falling behind the national average the fastest?"</p></div>
+          <div class="card t"><h3>Climate risk &amp; real estate</h3><p>"Which areas combine rising prices <em>and</em> rising exposure to natural disasters?"</p></div>
+          <div class="card o"><h3>Location strategy</h3><p>"Where to open a gym: density, income, median age, competition?"</p></div>
+          <div class="card g"><h3>Attractiveness &amp; dynamics</h3><p>"Which areas are becoming attractive <em>before</em> prices rise?"</p></div>
+          <div class="card i"><h3>Investment &amp; yield</h3><p>"Where is rental yield highest for a given budget?"</p></div>
+          <div class="card gold"><h3>Quality of life</h3><p>"Which towns offer the best access to healthcare per euro of housing?"</p></div>
+        </div>
+        <div class="note">Pick <strong>one</strong> as your storyline and build your app around it.</div>
+      </div>
+      <div class="imgwrap"><img src="../images/decision-support.png" alt=""></div>
+    </div>
+  </section>
+
+  <!-- 6 EXAMPLES OF EXISTING WEB APPS -->
+  <section class="slide">
+    <div class="kicker">A quick tour</div>
+    <h2>Examples of Existing Web Apps</h2>
+    <div class="split body" style="grid-template-columns:1fr 1.25fr">
+      <div>
+        <p>A few references for the kind of experience, visualization, or analysis you can aim for.</p>
+        <div class="linklist">
+          <a href="https://www.zillow.com/" target="_blank" rel="noopener" style="border-left-color:var(--blue)">
+            <span class="name">Zillow</span><span class="dom">zillow.com ↗</span></a>
+          <a href="https://www.meilleursagents.com/prix-immobilier/" target="_blank" rel="noopener" style="border-left-color:var(--teal)">
+            <span class="name">MeilleursAgents</span><span class="dom">meilleursagents.com ↗</span></a>
+          <a href="https://www.mapbox.com/industries/real-estate" target="_blank" rel="noopener" style="border-left-color:var(--brown)">
+            <span class="name">Mapbox</span><span class="dom">mapbox.com ↗</span></a>
+          <a href="https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1" target="_blank" rel="noopener" style="border-left-color:var(--indigo)">
+            <span class="name">Gapminder</span><span class="dom">gapminder.org ↗</span></a>
+          <a href="https://www.villesavivre.fr/" target="_blank" rel="noopener" style="border-left-color:var(--green)">
+            <span class="name">Villes à vivre</span><span class="dom">villesavivre.fr ↗</span></a>
+          <a href="https://data.ameli.fr/pages/data-pathologies/" target="_blank" rel="noopener" style="border-left-color:var(--gold)">
+            <span class="name">Data pathologies</span><span class="dom">data.ameli.fr ↗</span></a>
+          <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="noopener" style="border-left-color:var(--teal)">
+            <span class="name">Numbeo</span><span class="dom">numbeo.com ↗</span></a>
+        </div>
       </div>
       <div>
-        <div class="note warn"><strong>Not</strong> the individual looking for a place to live.
-        <br><br>This changes everything: you optimize for <strong>understanding &amp; deciding</strong>,
-        not for browsing listings.</div>
+        <div class="imgwrap"><img src="../images/website-screenshot.png" alt="Villes à vivre — exploring a commune by theme"></div>
+        <p style="text-align:center; margin-top:.8vh; font-size:clamp(11px,1.1vw,14px); color:var(--muted)">Villes à vivre — explore any commune by theme</p>
       </div>
     </div>
   </section>
 
-  <!-- 6 BIG QUESTIONS -->
+  <!-- 7 EXPLANATORY VARIABLES & DATA SOURCES -->
   <section class="slide">
-    <div class="kicker">Real questions your app answers</div>
-    <h2>The questions behind the data</h2>
-    <div class="grid g2 body">
-      <div class="card"><p style="font-size:clamp(15px,1.5vw,21px);color:var(--navy)">"How can I <strong>reduce inequality</strong> in my department?"</p></div>
-      <div class="card t"><p style="font-size:clamp(15px,1.5vw,21px);color:var(--navy)">"What are the <strong>climate risks</strong> of investing here over a 15-year horizon?"</p></div>
-      <div class="card o"><p style="font-size:clamp(15px,1.5vw,21px);color:var(--navy)">"Where should I open my <strong>next 10 franchises</strong>?"</p></div>
-      <div class="card i"><p style="font-size:clamp(15px,1.5vw,21px);color:var(--navy)">"How does this area <strong>compare to the national average</strong>?"</p></div>
+    <div class="kicker">A starting map</div>
+    <h2>Explanatory Variables &amp; Data Sources</h2>
+    <p style="max-width:70ch">Some variables worth cross-referencing with price — and where real data for each can be found.</p>
+    <div class="split body" style="grid-template-columns:3fr 2fr">
+      <table class="srctable">
+        <thead><tr><th>Explanatory variable</th><th>Example source</th><th>Where to find it</th></tr></thead>
+        <tbody>
+          <tr><td class="var">Real-estate prices (the core)</td><td>DVF sale transactions</td>
+            <td><a href="https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres-geolocalisees" target="_blank" rel="noopener">data.gouv.fr ↗</a></td></tr>
+          <tr><td class="var">Economy</td><td>GDP/capita, unemployment, income</td>
+            <td><a href="https://www.insee.fr" target="_blank" rel="noopener">insee.fr ↗</a></td></tr>
+          <tr><td class="var">Demography</td><td>Population, age, boundaries</td>
+            <td><a href="https://geo.api.gouv.fr" target="_blank" rel="noopener">geo.api.gouv.fr ↗</a></td></tr>
+          <tr><td class="var">Health &amp; services</td><td>Access to care</td>
+            <td><a href="https://data.ameli.fr" target="_blank" rel="noopener">data.ameli.fr ↗</a></td></tr>
+          <tr><td class="var">Building &amp; energy</td><td>Energy label (DPE)</td>
+            <td><a href="https://data.ademe.fr" target="_blank" rel="noopener">data.ademe.fr ↗</a></td></tr>
+          <tr><td class="var">Climate</td><td>Temperature history since 1940</td>
+            <td><a href="https://open-meteo.com" target="_blank" rel="noopener">open-meteo.com ↗</a></td></tr>
+          <tr><td class="var">Natural risk</td><td>Disaster declarations by commune</td>
+            <td><a href="https://www.georisques.gouv.fr" target="_blank" rel="noopener">georisques.gouv.fr ↗</a></td></tr>
+          <tr><td class="var">Society</td><td>Elections, tourism, and more</td>
+            <td><a href="https://www.data.gouv.fr" target="_blank" rel="noopener">data.gouv.fr ↗</a></td></tr>
+        </tbody>
+      </table>
+      <div class="imgwrap" style="background:rgb(254,243,223)"><img src="../images/linear-regression.png" alt="Linear regression example" style="object-fit:contain"></div>
     </div>
   </section>
 
-  <!-- ACT 2 DIVIDER -->
+  <!-- 8 SECTION 2 DIVIDER -->
   <section class="slide section">
-    <div class="kicker">Act 2</div>
-    <h1>Choose your thematic</h1>
-    <div class="lead">Pick one angle as your storyline — everything else follows from it.</div>
+    <div class="kicker">Section 2</div>
+    <h1>Data Representation<br>&amp; Exploration</h1>
+    <div class="lead">Tables, maps, and how to visualize the market clearly.</div>
     <div class="big-num">2</div>
   </section>
 
-  <!-- 7 FAMILIES -->
+  <!-- 9 INTERACTIVE DATA EXPLORATION -->
   <section class="slide">
-    <div class="kicker">Six families of topics</div>
-    <h2>Pick your direction</h2>
-    <div class="grid g3 body">
-      <div class="card"><h3>1 · Territorial inequality</h3><p>Gaps &amp; social mix between areas.</p></div>
-      <div class="card t"><h3>2 · Climate risk &amp; real estate</h3><p>Exposure, insurability over 10–15 years.</p></div>
-      <div class="card o"><h3>3 · Location strategy</h3><p>Franchises, retail, public services.</p></div>
-      <div class="card g"><h3>4 · Attractiveness &amp; dynamics</h3><p>In/out migration, gentrification.</p></div>
-      <div class="card i"><h3>5 · Investment &amp; yield</h3><p>Where rental return is highest.</p></div>
-      <div class="card gold"><h3>6 · Quality of life</h3><p>Access to care, schools, transport.</p></div>
-    </div>
-    <div class="note">Choose <strong>one</strong>. It becomes the thread through your whole app.</div>
-  </section>
+    <div class="kicker">Explore the market, your way</div>
+    <h2>Interactive Data Exploration</h2>
+    <div class="split body" style="grid-template-columns:1fr 1.15fr">
+      <div style="display:flex; flex-direction:column">
+        <p style="max-width:50ch; font-size:clamp(13px,1.35vw,23px)">Present your results through a highly interactive, customizable app that lets users navigate and select what they want to explore—from specific areas to global indicators—across <strong>city</strong>, <strong>department</strong>, and <strong>region</strong> levels.</p>
 
-  <!-- 8 ONE EXAMPLE EACH -->
-  <section class="slide">
-    <div class="kicker">What a good problem statement looks like</div>
-    <h2>One example per family</h2>
-    <div class="grid g2 body">
-      <div class="card"><h3>Inequality</h3><p>Which towns are falling behind the national average the fastest?</p></div>
-      <div class="card t"><h3>Climate risk</h3><p>Which areas combine rising prices <em>and</em> rising exposure to natural disasters?</p></div>
-      <div class="card o"><h3>Location strategy</h3><p>Where to open a gym: density, income, median age, competition?</p></div>
-      <div class="card g"><h3>Attractiveness</h3><p>Which areas are becoming attractive <em>before</em> prices rise?</p></div>
-      <div class="card i"><h3>Investment</h3><p>Where is rental yield highest for a given budget?</p></div>
-      <div class="card gold"><h3>Quality of life</h3><p>Which towns offer the best access to healthcare per euro of housing?</p></div>
+        <p style="max-width:50ch; font-size:clamp(13px,1.35vw,23px); margin-top:1.2vh">Your app must integrate cartographic analysis, allowing users to visualize trends on <span class="em">bubble</span>, <span class="em">isoline</span>, <span class="em">choropleth</span>, <span class="em">heat</span>, <span class="em">route</span>, or <span class="em">connection</span> maps.</p>
+
+        <div class="note" style="margin-top:auto">Deliver sortable, filterable, and ideally exportable tables presenting key statistical indicators—such as price per m², price evolution, and demographic metrics—cross-referenced at various levels of granularity.</div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; gap:1.4vw">
+        <div class="imgwrap" style="height:30vh; aspect-ratio:541/338; flex-shrink:0">
+          <img src="../images/paris.png" alt="Heat / choropleth map example">
+        </div>
+        <div class="imgwrap" style="height:30vh; aspect-ratio:586/600; flex-shrink:0">
+          <img src="../images/bubbles.png" alt="Bubble map example">
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 9 EXPLANATORY VARIABLES -->
-  <section class="slide">
-    <div class="kicker">Enrich your analysis</div>
-    <h2>Explanatory variables to cross-reference</h2>
-    <div class="grid g3 body">
-      <div class="card"><h3>Economy</h3><p>GDP/capita · unemployment · median income · poverty rate</p></div>
-      <div class="card t"><h3>Demography</h3><p>Median age · density · net migration &amp; its trend</p></div>
-      <div class="card g"><h3>Health &amp; services</h3><p>Access to care (doctor density) · life expectancy</p></div>
-      <div class="card o"><h3>Building &amp; energy</h3><p>Energy label (DPE) · building age</p></div>
-      <div class="card i"><h3>Climate &amp; risk</h3><p>20-yr temperature trend · natural disasters · insurance cost</p></div>
-      <div class="card gold"><h3>Society</h3><p>Election turnout/leaning (⚠ ethics) · tourism</p></div>
+  <!-- 10 HELPING WITH DATA REPRESENTATION -->
+  <section class="slide photo-light" style="background-image:url('../images/types-of-data-visualization.avif')">
+    <div class="kicker">Choose wisely</div>
+    <h2>Helping with Data Representation</h2>
+    <p style="max-width:72ch; font-size:clamp(13px,1.35vw,25px)">Picking the right way to represent your data is as important as building it,
+    as one of the trickiest parts of the analysis process is choosing the correct chart or map while
+    avoiding chartjunk.
+    </p>
+    <div class="grid gauto body">
+      <a class="card linkcard" href="https://en.wikipedia.org/wiki/Chartjunk" target="_blank" rel="noopener">
+        <h3>Chartjunk <span class="go">↗</span></h3><p>What to avoid: decoration that adds no information.</p>
+        <span class="url">wikipedia.org</span></a>
+      <a class="card linkcard t" href="https://www.anychart.com/chartopedia/usage-type/" target="_blank" rel="noopener">
+        <h3>AnyChart Chartopedia <span class="go">↗</span></h3><p>Browse chart types by use case.</p>
+        <span class="url">anychart.com</span></a>
+      <a class="card linkcard o" href="https://datavizcatalogue.com/search.html" target="_blank" rel="noopener">
+        <h3>Data Viz Catalogue <span class="go">↗</span></h3><p>A searchable catalogue of visualization types.</p>
+        <span class="url">datavizcatalogue.com</span></a>
+      <a class="card linkcard i" href="https://www.data-to-viz.com/" target="_blank" rel="noopener">
+        <h3>From Data to Viz <span class="go">↗</span></h3><p>Find the right chart for your data, with caveats.</p>
+        <span class="url">data-to-viz.com</span></a>
+      <a class="card linkcard gold" href="https://datavizproject.com/" target="_blank" rel="noopener">
+        <h3>DataViz Project <span class="go">↗</span></h3><p>Another comprehensive chart-type reference.</p>
+        <span class="url">datavizproject.com</span></a>
     </div>
-    <div class="note"><strong>Price alone explains nothing.</strong> The value of your project is in the <span class="em-teal">cross-referencing</span>.</div>
   </section>
 
-  <!-- ACT 3 DIVIDER -->
+  <!-- 11 SECTION 3 DIVIDER -->
   <section class="slide section">
-    <div class="kicker">Act 3</div>
-    <h1>The data</h1>
-    <div class="lead">Where to find it — and how to collect it responsibly.</div>
+    <div class="kicker">Section 3</div>
+    <h1>Technologies<br>&amp; Methodology</h1>
+    <div class="lead">The pipeline, the tools, and what you'll need to document.</div>
     <div class="big-num">3</div>
   </section>
 
-  <!-- 10 PIPELINE -->
-  <section class="slide">
-    <div class="kicker">The four mandatory steps</div>
-    <h2>The expected pipeline</h2>
-    <div class="flow" style="margin-top:6vh">
+  <!-- 12 BIG DATA & THE DATA PIPELINE -->
+  <section class="slide photo-light" style="background-image:url('../images/big-data.jpg')">
+    <div class="kicker">What makes this Big Data</div>
+    <h2>Big Data &amp; the Data Pipeline</h2>
+    <p style="max-width:76ch; margin-top:1.2vh; font-size:clamp(13px,1.35vw,23px)"> Big Data means data whose <span class="em">Volume</span>, <span class="em">Variety</span>
+    and <span class="em">Velocity</span> are high enough to require dedicated tools and methods to turn into value.
+    <br><br>
+      Make use of advanced tools
+    and methods in order to extract valuable insights from the huge amount of data. To tackle the immense
+    volume of data involved in this project, you have to use technologies for fast and efficient data
+    processing, such as <strong>Hadoop</strong> and <strong>Spark</strong>. By creating a
+    <strong>cluster of machines</strong>, you will distribute the workload across multiple nodes,
+    significantly reducing processing time and enabling parallel data processing.</p>
+    <div class="flow compact" style="margin-top:2vh">
       <div class="node">Collect<br><span style="font-weight:400;font-size:.7em;color:var(--muted)">12–50 sources</span></div>
       <div class="arrow">→</div>
       <div class="node">Organize<br><span style="font-weight:400;font-size:.7em;color:var(--muted)">SQL + NoSQL</span></div>
@@ -310,124 +420,102 @@
       <div class="arrow">→</div>
       <div class="node">Visualize<br><span style="font-weight:400;font-size:.7em;color:var(--muted)">interactive app</span></div>
     </div>
-    <div class="note">This is the backbone of the whole project — and of how you'll be graded.</div>
+    <div class="note">For Homepedia, focus on <strong>Volume &amp; Variety</strong>.
+    <strong>Real-time (Velocity) is a bonus</strong>, not a requirement — most housing data is batch.</div>
   </section>
 
-  <!-- 11 SOURCES + STARTER KIT -->
+  <!-- 13 TEXTUAL DATA & RESPONSIBLE COLLECTION -->
   <section class="slide">
-    <div class="kicker">Where to find data</div>
-    <h2>Sources &amp; APIs — a running start</h2>
-    <div class="two">
-      <div>
-        <p>We give you a <span class="em">starter kit</span>: <strong>6 ready-to-run scripts</strong>
-        (<code>exemples-apis/</code>), <strong>no API key needed</strong>:</p>
-        <ul class="big" style="margin-top:2vh">
-          <li><strong>DVF</strong> — real sale prices (the core)</li>
-          <li><strong>INSEE / Eurostat</strong> — GDP, income, population</li>
-          <li><strong>Open-Meteo</strong> — climate history since 1940</li>
-          <li><strong>Géorisques</strong> — natural-disaster records</li>
-          <li><strong>ADEME</strong> — energy labels (DPE)</li>
-          <li><strong>API Géo</strong> — boundaries &amp; maps</li>
-        </ul>
+    <div class="kicker">Text is data too</div>
+    <h2>Textual Data &amp; Responsible Collection</h2>
+    <p style="max-width:76ch; font-size:clamp(13px,1.35vw,22px)">While the primary focus lies in collecting
+    and analyzing vast amounts of data, there is a crucial role for artificial intelligence to play.
+      <br>
+      <strong>Textual data</strong>, such as comments describing the quality or shortcomings of a city, can be efficiently processed and
+    analyzed using AI techniques, to extract valuable information such as <strong>sentiment analysis</strong>.</p>
+    <div class="split body" style="grid-template-columns:1fr 1.4fr">
+      <div class="imgwrap"><img src="../images/sentiment-analysis.jpeg" alt="Sentiment analysis"></div>
+      <div class="grid" style="grid-template-columns:1fr; gap:1.8vh">
+        <div class="card"><h3>Process it, don't just show it</h3>
+          <p>At least one of your sources should be a textual one. This type of data mustn't be simply mapped
+          to its source or presented as a list of comments, but it should be processed in a way that makes it
+          usable.</p></div>
+        <div class="card t"><h3>Collect it responsibly</h3>
+          <p>Open data isn't the same as merely accessible data — check the licence, read the terms of use,
+          and throttle your requests. Document your sourcing choices, even for an academic project.</p></div>
       </div>
-      <div>
-        <div class="note"><strong>The rules of the subject:</strong><br>
-        12–50 distinct sources · at least <strong>one textual</strong> source ·
-        covering <strong>state / region / department / city</strong> ·
-        plus indicators from ≥3 other domains.</div>
-        <div class="note" style="margin-top:2vh">Two patterns unlock hundreds of datasets:
-        <br><strong>data-fair</strong> <code>/lines?...&amp;format=csv</code>
-        &amp; <strong>OpenDataSoft</strong> <code>/records</code>, <code>/exports/csv</code>.</div>
-      </div>
+    </div>
+    <div class="note">"How many times are <strong>"rats"</strong> mentioned in reviews in the local restaurants in this region?"</div>
+  </section>
+
+  <!-- 14 USEFUL LIBRARIES -->
+  <section class="slide">
+    <div class="kicker">Tools worth knowing</div>
+    <h2>Useful Libraries for the App &amp; Data Visualization</h2>
+    <div class="grid g3 body">
+      <a class="card linkcard" href="https://streamlit.io/" target="_blank" rel="noopener">
+        <h3>Streamlit <span class="go">↗</span></h3><p>Build your interactive application quickly, in Python.</p>
+        <span class="url">streamlit.io</span></a>
+      <a class="card linkcard t" href="https://leafletjs.com/examples.html" target="_blank" rel="noopener">
+        <h3>Leaflet <span class="go">↗</span></h3><p>Build and integrate interactive maps.</p>
+        <span class="url">leafletjs.com</span></a>
+      <a class="card linkcard o" href="https://plotly.com/" target="_blank" rel="noopener">
+        <h3>Plotly <span class="go">↗</span></h3><p>Create interactive charts and visualizations.</p>
+        <span class="url">plotly.com</span></a>
     </div>
   </section>
 
-  <!-- 12 TEXTUAL SOURCE -->
+  <!-- 15 DATA SOURCING & PROCESSING DOCUMENTATION -->
   <section class="slide">
-    <div class="kicker">The requirement most teams underestimate</div>
-    <h2>Your mandatory textual source</h2>
-    <div class="body">
-      <p style="max-width:62ch">At least one source must be <span class="em">textual</span> — and it must be
-      <strong>processed</strong>, not just stored or listed as raw comments.</p>
-      <div class="grid g2" style="margin-top:3vh">
-        <div class="card t"><h3>Turn text into an indicator</h3><p>e.g. a satisfaction score per town, from reviews — comparable and mappable.</p></div>
-        <div class="card"><h3>Where to get it</h3><p>Town reviews (villesavivre.fr), Wikipedia descriptions, local press/forums (⚠ terms of use).</p></div>
-      </div>
-      <div class="note">Example spirit: <em>"How many times is the word 'rats' mentioned in local reviews of this area?"</em></div>
+    <div class="kicker">What to write down</div>
+    <h2>Data Sourcing &amp; Processing Documentation</h2>
+    <div class="grid g3 body">
+      <div class="card"><h3>API documentation</h3>
+        <p>For each API you use, document which one it was, what data you retrieved from it, and for what purpose.</p></div>
+      <div class="card t"><h3>Data cleaning &amp; database documentation</h3>
+        <p>To provide a comprehensive understanding of your project's foundation, include a well-defined
+        schema of your database(s), along with a meticulous description of your data-cleaning methodology.</p></div>
+      <div class="card o"><h3>AI documentation (if used)</h3>
+        <p>If AI algorithms are utilized within the project, it is essential to provide a detailed account
+        of their implementation and functionality.</p></div>
     </div>
   </section>
 
-  <!-- 13 RESPONSIBLE COLLECTION -->
-  <section class="slide">
-    <div class="kicker">Ethics &amp; legality</div>
-    <h2>Responsible data collection</h2>
-    <div class="body">
-      <ul class="big">
-        <li><strong>Open</strong> data ≠ merely <strong>accessible</strong> online — a licence must allow reuse.</li>
-        <li>Read the terms of use; throttle your requests; identify your agent.</li>
-        <li>Prefer public/open datasets (INSEE, data.gouv.fr) when they exist.</li>
-      </ul>
-      <div class="note warn">The academic context does <strong>not</strong> exempt you from care. Document your sourcing choices.</div>
-    </div>
-  </section>
-
-  <!-- ACT 4 DIVIDER -->
+  <!-- 16 SECTION 4 DIVIDER -->
   <section class="slide section">
-    <div class="kicker">Act 4</div>
-    <h1>The tech</h1>
-    <div class="lead">What we expect you to actually build.</div>
+    <div class="kicker">Section 4</div>
+    <h1>Evaluation Criteria</h1>
+    <div class="lead">Teams, timeline, and exactly how you'll be graded.</div>
     <div class="big-num">4</div>
   </section>
 
-  <!-- 14 DATABASES -->
+  <!-- 17 LOGISTICS -->
   <section class="slide">
-    <div class="kicker">Store it right</div>
-    <h2>Database architecture</h2>
-    <div class="grid g2 body">
-      <div class="card"><h3>Relational (SQL)</h3><p>Regular, tabular, heavily-joined data. Indicators per territory.</p></div>
-      <div class="card t"><h3>Non-relational (NoSQL)</h3><p>Heterogeneous / nested / textual data — reviews, variable schemas.</p></div>
-    </div>
-    <div class="note">Both are required. Explain your schema · standardize on <strong>common keys</strong>
-    (the <strong>INSEE code</strong>, never the town name!) · apply indexing.</div>
-  </section>
-
-  <!-- 15 DISTRIBUTED -->
-  <section class="slide">
-    <div class="kicker">Scale it</div>
-    <h2>Distributed processing</h2>
-    <div class="body">
-      <ul class="big">
-        <li>Run your pipeline on a <span class="em">distributed technology</span> — Spark or Hadoop.</li>
-        <li>Spread the workload across a <span class="em">cluster of several nodes</span>.</li>
-        <li>Document your <strong>data-cleaning</strong> method; extract ≥ 3 analytical insights.</li>
-        <li>Be able to explain what the distributed setup buys you vs. a single machine.</li>
-      </ul>
-      <div class="note"><strong>Cluster access:</strong> you will use <span class="em-teal">local VMs</span>.
-      Talk to us early to get set up.</div>
+    <div class="kicker">Organization</div>
+    <h2>How we work</h2>
+    <div class="kv body">
+      <div class="row"><span class="k">Teams</span><span class="v"><strong>Groups of 3–4</strong></span></div>
+      <div class="row"><span class="k">Final review</span><span class="v">"Client point of view" — live app demo + technical defense, presented like to a client</span></div>
+      <div class="row"><span class="k">Deliverables</span><span class="v">Deployed interactive app (local or online) · full source &amp; config · database schema · architecture documentation</span></div>
+      <div class="row"><span class="k">Sources</span><span class="v">DVF, INSEE, data.gouv.fr… + at least one source you find legally yourselves</span></div>
+      <div class="row"><span class="k">Tooling</span><span class="v">Streamlit · Spark · Leaflet</span></div>
     </div>
   </section>
 
-  <!-- 16 VISUALIZE -->
+  <!-- 18 TIMELINE -->
   <section class="slide">
-    <div class="kicker">Make it speak</div>
-    <h2>Tables · maps · interactivity</h2>
-    <div class="grid g3 body">
-      <div class="card"><h3>Tables</h3><p>Sortable, filterable indicators (€/m², price trend…), exportable.</p></div>
-      <div class="card t"><h3>Maps</h3><p>Choropleth / bubbles / heat — at city, department &amp; region levels.</p></div>
-      <div class="card o"><h3>Interactive app</h3><p>Reads from the database (not static files); user selects areas &amp; indicators.</p></div>
+    <div class="kicker">T-DAT-901</div>
+    <h2>Timeline</h2>
+    <div class="kv body">
+      <div class="row"><span class="k">Mon 14 Sep 2026</span><span class="v"><strong>Kick Off</strong> · 14:00–17:30</span></div>
+      <div class="row"><span class="k">Fri 25 Sep 2026</span><span class="v">Follow-Up 1 / 3 · 14:00–17:30</span></div>
+      <div class="row"><span class="k">Fri 20 Nov 2026</span><span class="v">Follow-Up 2 / 3 · 14:00–17:30</span></div>
+      <div class="row"><span class="k">Fri 8 Jan 2027</span><span class="v">Follow-Up 3 / 3 · 14:00–17:30</span></div>
+      <div class="row"><span class="k">Fri 12 Feb 2027</span><span class="v"><span class="em-teal"><strong>Final Keynote</strong></span> · 14:00–17:45</span></div>
     </div>
-    <div class="note warn">Avoid <strong>chartjunk</strong>: justify every chart and map type by the data it represents.</div>
   </section>
 
-  <!-- ACT 5 DIVIDER -->
-  <section class="slide section">
-    <div class="kicker">Act 5</div>
-    <h1>The frame</h1>
-    <div class="lead">How you'll be graded, in what teams, by when.</div>
-    <div class="big-num">5</div>
-  </section>
-
-  <!-- 17 EVAL OVERVIEW -->
+  <!-- 19 EVAL OVERVIEW -->
   <section class="slide">
     <div class="kicker">Grading at a glance</div>
     <h2>Six axes<span class="score">/30</span></h2>
@@ -442,89 +530,7 @@
     <div class="note"><strong>+ bonus</strong>: online deployment, authentication, real-time updates, other countries… Full detail at the end.</div>
   </section>
 
-  <!-- 18 LOGISTICS -->
-  <section class="slide">
-    <div class="kicker">Organization</div>
-    <h2>How we work</h2>
-    <div class="kv body">
-      <div class="row"><span class="k">Teams</span><span class="v"><strong>Groups of 3–4</strong></span></div>
-      <div class="row"><span class="k">Final review</span><span class="v">"Client point of view" — live app demo + technical defense, presented like to a client</span></div>
-      <div class="row"><span class="k">Deliverables</span><span class="v">Deployed interactive app (local or online) · full source &amp; config · database schema · architecture documentation</span></div>
-      <div class="row"><span class="k">Sources</span><span class="v">DVF, INSEE, data.gouv.fr… + at least one source you find legally yourselves</span></div>
-      <div class="row"><span class="k">Tooling</span><span class="v">Streamlit · Spark · Leaflet — and the provided <code>exemples-apis/</code> starter kit</span></div>
-    </div>
-  </section>
-
-  <!-- 19 TIMELINE -->
-  <section class="slide">
-    <div class="kicker">T-DAT-901</div>
-    <h2>Timeline</h2>
-    <div class="kv body">
-      <div class="row"><span class="k">Mon 14 Sep 2026</span><span class="v"><strong>Kick Off</strong> · 14:00–17:30</span></div>
-      <div class="row"><span class="k">Fri 25 Sep 2026</span><span class="v">Follow-Up 1 / 3 · 14:00–17:30</span></div>
-      <div class="row"><span class="k">Fri 20 Nov 2026</span><span class="v">Follow-Up 2 / 3 · 14:00–17:30</span></div>
-      <div class="row"><span class="k">Fri 8 Jan 2027</span><span class="v">Follow-Up 3 / 3 · 14:00–17:30</span></div>
-      <div class="row"><span class="k">Fri 12 Feb 2027</span><span class="v"><span class="em-teal"><strong>Final Keynote</strong></span> · 14:00–17:45</span></div>
-    </div>
-  </section>
-
-  <!-- ACT 6 DIVIDER -->
-  <section class="slide section">
-    <div class="kicker">Act 6</div>
-    <h1>Get started</h1>
-    <div class="lead">Leave this room already moving.</div>
-    <div class="big-num">6</div>
-  </section>
-
-  <!-- 20 INSPIRATION -->
-  <section class="slide">
-    <div class="kicker">They did it well</div>
-    <h2>Inspiration</h2>
-    <div class="grid g2 body">
-      <div class="card"><h3>Gapminder</h3><p>A fact-based worldview through data visualization.</p></div>
-      <div class="card t"><h3>villesavivre.fr</h3><p>Reviews &amp; comparisons of French towns.</p></div>
-      <div class="card o"><h3>data.ameli — "Data pathologies"</h3><p>Health data from the French system.</p></div>
-      <div class="card i"><h3>Numbeo</h3><p>Cost of living, quality of life by city.</p></div>
-    </div>
-    <div class="note">Get inspired — <strong>don't copy</strong>.</div>
-  </section>
-
-  <!-- 21 BONUSES -->
-  <section class="slide">
-    <div class="kicker">Going further</div>
-    <h2>Bonuses</h2>
-    <div class="grid g3 body">
-      <div class="card"><p>Other countries' markets</p></div>
-      <div class="card t"><p>Online deployment</p></div>
-      <div class="card o"><p>Authentication &amp; accounts</p></div>
-      <div class="card i"><p>Hardened security</p></div>
-      <div class="card g"><p><strong>Real-time updates</strong></p></div>
-      <div class="card gold"><p>Admin view · guided tour</p></div>
-    </div>
-  </section>
-
-  <!-- 22 FIRST 2 HOURS -->
-  <section class="slide">
-    <div class="kicker">No blank-page syndrome</div>
-    <h2>Your first two hours</h2>
-    <div class="steps body">
-      <div class="step"><div class="n">1</div><h3>Pick a thematic</h3><p>One family, one problem statement.</p></div>
-      <div class="step"><div class="n">2</div><h3>List 3 sources</h3><p>Including one textual. Try the starter kit.</p></div>
-      <div class="step"><div class="n">3</div><h3>Sketch the app</h3><p>What screen answers your question?</p></div>
-      <div class="step"><div class="n">4</div><h3>Split roles</h3><p>Data · pipeline · viz · app.</p></div>
-    </div>
-    <div class="note">Then: questions &amp; answers. Let's go.</div>
-  </section>
-
-  <!-- ACT 7 DIVIDER -->
-  <section class="slide section">
-    <div class="kicker">Act 7</div>
-    <h1>Evaluation criteria<br>in detail</h1>
-    <div class="lead">One point per valid statement. Know exactly what earns each point.</div>
-    <div class="big-num">7</div>
-  </section>
-
-  <!-- 23 CRIT 1 -->
+  <!-- 20 CRIT 1 -->
   <section class="slide">
     <div class="kicker">Criteria · 1 point per statement</div>
     <h2>Data Gathering &amp; Sourcing <span class="score">/5</span></h2>
@@ -538,7 +544,7 @@
     <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
   </section>
 
-  <!-- 24 CRIT 2 -->
+  <!-- 21 CRIT 2 -->
   <section class="slide">
     <div class="kicker">Criteria · 1 point per statement</div>
     <h2>Database Organization <span class="score">/5</span></h2>
@@ -552,7 +558,7 @@
     <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
   </section>
 
-  <!-- 25 CRIT 3 -->
+  <!-- 22 CRIT 3 -->
   <section class="slide">
     <div class="kicker">Criteria · 1 point per statement</div>
     <h2>Distributed Data Processing <span class="score">/5</span></h2>
@@ -564,9 +570,10 @@
       <li>Students explain what the <strong>distributed setup brings</strong> vs. a single-machine run.</li>
     </ul>
     <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+    <div class="note"><strong>Cluster access:</strong> you will use <span class="em-teal">local VMs</span>. Talk to us early to get set up.</div>
   </section>
 
-  <!-- 26 CRIT 4 -->
+  <!-- 23 CRIT 4 -->
   <section class="slide">
     <div class="kicker">Criteria · 1 point per statement</div>
     <h2>Textual Data Analysis <span class="score">/4</span></h2>
@@ -579,7 +586,7 @@
     <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></div>
   </section>
 
-  <!-- 27 CRIT 5 -->
+  <!-- 24 CRIT 5 -->
   <section class="slide">
     <div class="kicker">Criteria · 1 point per statement</div>
     <h2>Tabular &amp; Cartographic Visualization <span class="score">/6</span></h2>
@@ -594,7 +601,7 @@
     <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
   </section>
 
-  <!-- 28 CRIT 6 -->
+  <!-- 25 CRIT 6 -->
   <section class="slide">
     <div class="kicker">Criteria · 1 point per statement</div>
     <h2>Interactive Application <span class="score">/5</span></h2>
@@ -608,13 +615,25 @@
     <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
   </section>
 
-  <!-- 29 CLOSING -->
-  <section class="slide cover">
-    <div class="kicker">Questions &amp; answers</div>
-    <h1>Let's build<br>Homepedia.</h1>
-    <div class="sub">Pick a thematic · find your data · start now</div>
-    <div class="brandline"></div>
-    <div class="meta">Total: 30 points + bonus — the full picture is in your hands.</div>
+  <!-- 26 BONUSES -->
+  <section class="slide">
+    <div class="kicker">Going further</div>
+    <h2>Bonuses</h2>
+    <div class="grid g3 body">
+      <div class="card"><p>Other countries' markets</p></div>
+      <div class="card t"><p>Online deployment</p></div>
+      <div class="card o"><p>Authentication &amp; accounts</p></div>
+      <div class="card i"><p>Hardened security</p></div>
+      <div class="card g"><p><strong>Real-time updates</strong></p></div>
+      <div class="card gold"><p>Admin view · guided tour</p></div>
+    </div>
+  </section>
+
+  <!-- 27 FINAL: YOUR NEXT TWO HOURS -->
+  <section class="slide">
+    <div class="kicker">No blank-page syndrome</div>
+    <h2>Your Next Two Hours: Get started with the bootstrap !</h2>
+    <div class="imgwrap"><img src="../images/bootstrap.png" style="object-fit:contain" alt=""></div>
   </section>
 
 </div>

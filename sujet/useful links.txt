@@ -1,0 +1,35 @@
+Useful librairies :
+Streamlit : https://streamlit.io/ -> To create your app
+Leaflet : https://leafletjs.com/examples.html [!TIP] Tools like leaflet allow you to build interactive maps and
+integrate them in your app.
+Plotly : https://plotly.com/
+
+
+Real-life examples for inspiration :
+Zillow : https://www.zillow.com/
+MeilleursAgents : https://www.meilleursagents.com/prix-immobilier/
+Mapbox : https://www.mapbox.com/industries/real-estate
+Gapminder : https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1
+Villes à vivre : https://www.villesavivre.fr/
+Data pathologies : https://data.ameli.fr/pages/data-pathologies/
+Numbeo : https://www.numbeo.com/cost-of-living/
+
+Helping with data representation :
+Chartjunk : https://en.wikipedia.org/wiki/Chartjunk
+AnyChart : https://www.anychart.com/chartopedia/usage-type/
+Data Viz Catalogue : https://datavizcatalogue.com/search.html
+From Data to Viz : https://www.data-to-viz.com/
+DataViz Project : https://datavizproject.com/
+
+
+
+Trash :
+Databricks documentation : https://docs.databricks.com/aws/en/getting-started/
+Databricks Free Edition : https://www.databricks.com/learn/free-edition
+
+
+
+
+
+
+
